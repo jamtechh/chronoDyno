@@ -168,7 +168,8 @@ endif()
 # files in your project. 
 #--------------------------------------------------------------
 
-add_executable(my_demo test1.cpp ${SOURCES})
+# add_executable(my_demo test1.cpp ${SOURCES})
+add_executable(my_demo test2.cpp ${SOURCES})
 # add_executable(my_demo modified_PE_1.cpp ${SOURCES})
 
 #--------------------------------------------------------------

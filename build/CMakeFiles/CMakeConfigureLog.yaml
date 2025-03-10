@@ -1822,3 +1822,163 @@ events:
         
       exitCode: 2
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "src/CMakeLists.txt:324 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE"
+      binary: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "  -fopenmp"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/jamiul/chronoDyno/cmake/"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_52bf8/fast
+        gmake[1]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_52bf8.dir/build.make CMakeFiles/cmTC_52bf8.dir/build
+        gmake[2]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE'
+        Building C object CMakeFiles/cmTC_52bf8.dir/test_mpi.c.o
+        /usr/bin/cc   -fopenmp  -o CMakeFiles/cmTC_52bf8.dir/test_mpi.c.o -c /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE/test_mpi.c
+        /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE/test_mpi.c:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[2]: *** [CMakeFiles/cmTC_52bf8.dir/build.make:78: CMakeFiles/cmTC_52bf8.dir/test_mpi.c.o] Error 1
+        gmake[2]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE'
+        gmake[1]: *** [Makefile:127: cmTC_52bf8/fast] Error 2
+        gmake[1]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-DxHoeE'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "src/CMakeLists.txt:324 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa"
+      binary: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "  -fopenmp"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/jamiul/chronoDyno/cmake/"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_03650/fast
+        gmake[1]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_03650.dir/build.make CMakeFiles/cmTC_03650.dir/build
+        gmake[2]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa'
+        Building CXX object CMakeFiles/cmTC_03650.dir/test_mpi.cpp.o
+        /usr/bin/c++   -fopenmp  -std=gnu++17 -o CMakeFiles/cmTC_03650.dir/test_mpi.cpp.o -c /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa/test_mpi.cpp
+        /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa/test_mpi.cpp:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[2]: *** [CMakeFiles/cmTC_03650.dir/build.make:78: CMakeFiles/cmTC_03650.dir/test_mpi.cpp.o] Error 1
+        gmake[2]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa'
+        gmake[1]: *** [Makefile:127: cmTC_03650/fast] Error 2
+        gmake[1]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-pOjeEa'
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "src/CMakeLists.txt:324 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN"
+      binary: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "  -fopenmp"
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/jamiul/chronoDyno/cmake/"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_33a54/fast
+        gmake[1]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_33a54.dir/build.make CMakeFiles/cmTC_33a54.dir/build
+        gmake[2]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN'
+        Building C object CMakeFiles/cmTC_33a54.dir/test_mpi.c.o
+        /usr/bin/cc   -fopenmp  -o CMakeFiles/cmTC_33a54.dir/test_mpi.c.o -c /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN/test_mpi.c
+        /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN/test_mpi.c:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[2]: *** [CMakeFiles/cmTC_33a54.dir/build.make:78: CMakeFiles/cmTC_33a54.dir/test_mpi.c.o] Error 1
+        gmake[2]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN'
+        gmake[1]: *** [Makefile:127: cmTC_33a54/fast] Error 2
+        gmake[1]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-8nwzSN'
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "src/CMakeLists.txt:324 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd"
+      binary: "/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "  -fopenmp"
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/jamiul/chronoDyno/cmake/"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_aaaac/fast
+        gmake[1]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_aaaac.dir/build.make CMakeFiles/cmTC_aaaac.dir/build
+        gmake[2]: Entering directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd'
+        Building CXX object CMakeFiles/cmTC_aaaac.dir/test_mpi.cpp.o
+        /usr/bin/c++   -fopenmp  -std=gnu++17 -o CMakeFiles/cmTC_aaaac.dir/test_mpi.cpp.o -c /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd/test_mpi.cpp
+        /home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd/test_mpi.cpp:1:10: fatal error: mpi.h: No such file or directory
+            1 | #include <mpi.h>
+              |          ^~~~~~~
+        compilation terminated.
+        gmake[2]: *** [CMakeFiles/cmTC_aaaac.dir/build.make:78: CMakeFiles/cmTC_aaaac.dir/test_mpi.cpp.o] Error 1
+        gmake[2]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd'
+        gmake[1]: *** [Makefile:127: cmTC_aaaac/fast] Error 2
+        gmake[1]: Leaving directory '/home/jamiul/chronoDyno/build/CMakeFiles/CMakeScratch/TryCompile-X8yWJd'
+        
+      exitCode: 2
+...
