@@ -1,5 +1,5 @@
 # Dump hierarchy from SolidWorks 
-# Assembly: C:\Users\Jamiul Haque\OneDrive - UW-Madison\Design\chronoMotor\Assem1.SLDASM
+# Assembly: C:\Users\Jamiul\OneDrive - UW-Madison\Design\chronoMotor\Assem1.SLDASM
 
 
          -Comments [CommentsFolder]
@@ -57,22 +57,25 @@
            -Concentric19 [MateConcentric]
            -Concentric20 [MateConcentric]
            -Coincident17 [MateCoincident]
-   +frame-1 <Default>
-           -Comments [CommentsFolder]
-           -Sketch1 [ProfileFeature]
    +Part1-1 <Default>
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]
    +GearA-2 <Default>
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]
+   +GearF-1 <Default>
+           -Comments [CommentsFolder]
+           -Sketch1 [ProfileFeature]
+   +frame-1 <Default>
+           -Comments [CommentsFolder]
+           -Sketch1 [ProfileFeature]
    +GearB-1 <Default>
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]
-   +GearD-1 <Default>
+   +GearC-1 <Default>
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]
-   +GearC-1 <Default>
+   +GearD-1 <Default>
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]
    +GearE-1 <Default>
@@ -82,8 +85,5 @@
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]
    +Part2_dyno-1 <Default>
-           -Comments [CommentsFolder]
-           -Sketch1 [ProfileFeature]
-   +GearF-1 <Default>
            -Comments [CommentsFolder]
            -Sketch1 [ProfileFeature]

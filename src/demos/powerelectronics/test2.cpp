@@ -39,7 +39,7 @@
 #include "chrono/core/ChRandom.h"
 
 #include "chrono_irrlicht/ChVisualSystemIrrlicht.h"
-#include "chrono_irrlicht/ChIrrMeshTools.h"
+// #include "chrono_irrlicht/ChIrrMeshTools.h"
 // #include "chrono_irrlicht/ChIrrCamera.h"
 #include <chrono/physics/ChSystem.h>
 
@@ -155,7 +155,7 @@ void CreateJoint(std::shared_ptr<ChBody> bodyA, std::shared_ptr<ChBody> bodyB, C
 class RigidBody {
     public:
         RigidBody(ChSystemNSC& sys, const std::string& file_name, double density, bool is_fixed = false)
-            : system(sys), obj_file1(file_name), obj_file(std::string("powerelectronics/obj/") + file_name + std::string(".obj")), density(density), is_fixed(is_fixed) {
+            : system(sys), obj_file(file_name), density(density), is_fixed(is_fixed) {
             SetupRigidBody();
         }
     
@@ -179,7 +179,6 @@ class RigidBody {
     private:
         ChSystemNSC& system;
         std::string obj_file;
-        std::string obj_file1;
         double density;
         bool is_fixed;
         std::shared_ptr<ChBody> body;
@@ -188,11 +187,11 @@ class RigidBody {
     
         void SetupRigidBody() {
             // Load mesh
-            const std::string fName = std::string("powerelectronics/obj/") + obj_file1 + std::string(".obj");
+            const std::string fName = std::string("powerelectronics/obj/") + obj_file + std::string(".obj");
             std::cout<<fName<<std::endl;
             // std::cout<<obj_file<<std::endl;
-            // auto trimesh = ChTriangleMeshConnected::CreateFromWavefrontFile(GetChronoDataFile(fName));
-            auto trimesh = ChTriangleMeshConnected::CreateFromWavefrontFile(GetChronoDataFile(obj_file));
+            auto trimesh = ChTriangleMeshConnected::CreateFromWavefrontFile(GetChronoDataFile(fName));
+            // auto trimesh = ChTriangleMeshConnected::CreateFromWavefrontFile(GetChronoDataFile(obj_file));
     
             // Compute mass properties
             double volume;
@@ -205,80 +204,71 @@ class RigidBody {
     
             // Create rigid body
             body = chrono_types::make_shared<ChBody>();
-            system.Add(body);
             body->SetFixed(is_fixed);
             body->SetMass(mass);
             body->SetInertiaXX(ChVector3d(inertia(0, 0), inertia(1, 1), inertia(2, 2)));
             body->SetPos(cog);
+
+            system.Add(body);
     
             // Visualization
             mesh = chrono_types::make_shared<ChVisualShapeTriangleMesh>();
             mesh->SetMesh(trimesh);
-            mesh->SetVisible(true);
+            // mesh->SetVisible(true);
             body->AddVisualShape(mesh, ChFrame<>(-cog, ChMatrix33<>(1)));
     
-            // Collision
-            auto coll_trimesh = ChTriangleMeshConnected::CreateFromWavefrontFile(GetChronoDataFile(obj_file));
-            coll_trimesh->Transform(-cog, ChMatrix33<>(1));
-    
-            auto coll_mat = chrono_types::make_shared<ChContactMaterialNSC>();
-            coll_mat->SetFriction(0.30);
-            coll_mat->SetRestitution(0.001);
-    
-            auto coll_shape = chrono_types::make_shared<ChCollisionShapeTriangleMesh>(coll_mat, coll_trimesh, false, false, 0.001);
-            auto coll_model = chrono_types::make_shared<ChCollisionModel>();
-            coll_model->SetSafeMargin(0.1f);
-            coll_model->SetEnvelope(0.001f);
-            coll_model->AddShape(coll_shape, ChFrame<>(ChVector3d(0, 0, 0), QUNIT));
-            body->AddCollisionModel(coll_model);
-            body->EnableCollision(false);
-    
             // Debug Output
+            if(0){
             std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n";
-            std::cout << "!!!!!!! " << obj_file1 << " -> Inertia properties !!!!!!!" << "\n";
+            std::cout << "!!!!!!! " << obj_file << " -> Inertia properties !!!!!!!" << "\n";
             std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n";
             std::cout << "Mass: " << mass << " [kg]" << "\n";
             std::cout << "Center of Gravity: " << cog << " [mm]" << "\n";
             std::cout << "Inertia Tensor:\n" << inertia << " [kg*mm^2]" << "\n\n";
+            }
         }
     };
         
 int main(int argc, char* argv[]) {
-    printSom();
+    // printSom();
     ChSystemNSC sys = GravetySetup();
 
-    RigidBody frameGlobal(sys, "Part4_frame", 7500.00 / (1e9), true);
-    RigidBody rotor(sys, "Part3_driverGear", 5820.00 / (1e9));
-    RigidBody stator(sys, "Part5_motor", 7920.00 / (1e9));
-    RigidBody gear(sys, "Part2_drivenGear", 7920.00 / (1e9));
-    RigidBody gearB(sys, "GearB", 7920.00 / (1e9));
-    RigidBody gearC(sys, "GearC", 7920.00 / (1e9));
-    RigidBody gearD(sys, "GearD", 7920.00 / (1e9));
-    RigidBody gearE(sys, "GearE", 7920.00 / (1e9));
-    RigidBody gearF(sys, "GearF", 7920.00 / (1e9));
-    RigidBody flywheel(sys, "flywheel", 7920.00 / (1e9));
+    // ImportSolidworksSystemCpp(sys);
+
+    RigidBody frameGlobal(sys, "body_4_1", 7500.00 / (1e9), true);
+    // RigidBody frameGlobal2(sys, "Part4_frame", 7500.00 / (1e9), true);
+    // RigidBody rotor(sys, "Part3_driverGear", 5820.00 / (1e9));
+    // RigidBody stator(sys, "body_1_1", 7920.00 / (1e9));
+    // RigidBody stator2(sys, "Part5_motor", 7920.00 / (1e9));
+    // RigidBody gear(sys, "Part2_drivenGear", 7920.00 / (1e9));
+    // RigidBody gearB(sys, "GearB", 7920.00 / (1e9));
+    // RigidBody gearC(sys, "GearC", 7920.00 / (1e9));
+    // RigidBody gearD(sys, "GearD", 7920.00 / (1e9));
+    // RigidBody gearE(sys, "GearE", 7920.00 / (1e9));
+    // RigidBody gearF(sys, "GearF", 7920.00 / (1e9));
+    // RigidBody flywheel(sys, "flywheel", 7920.00 / (1e9));
 
     
     auto [FrameGlobal_body, FrameGlobal_cog] = frameGlobal.GetBodyAndCOG();
-    auto [Rotor_body,       Rotor_cog]       = rotor.GetBodyAndCOG();
-    auto [Stator_body,      Stator_cog]      = stator.GetBodyAndCOG();
-    auto [Gear_body,        Gear_cog]        = gear.GetBodyAndCOG();
-    auto [GearB_body,        GearB_cog]        = gearB.GetBodyAndCOG();
-    auto [GearC_body,        GearC_cog]        = gearC.GetBodyAndCOG();
-    auto [GearD_body,        GearD_cog]        = gearD.GetBodyAndCOG();
-    auto [GearE_body,        GearE_cog]        = gearE.GetBodyAndCOG();
-    auto [GearF_body,        GearF_cog]        = gearF.GetBodyAndCOG();
-    auto [Flywheel_body,     Flywheel_cog]        = flywheel.GetBodyAndCOG();
+    // auto [Rotor_body,       Rotor_cog]       = rotor.GetBodyAndCOG();
+    // auto [Stator_body,      Stator_cog]      = stator.GetBodyAndCOG();
+    // auto [Gear_body,        Gear_cog]        = gear.GetBodyAndCOG();
+    // auto [GearB_body,        GearB_cog]        = gearB.GetBodyAndCOG();
+    // auto [GearC_body,        GearC_cog]        = gearC.GetBodyAndCOG();
+    // auto [GearD_body,        GearD_cog]        = gearD.GetBodyAndCOG();
+    // auto [GearE_body,        GearE_cog]        = gearE.GetBodyAndCOG();
+    // auto [GearF_body,        GearF_cog]        = gearF.GetBodyAndCOG();
+    // auto [Flywheel_body,     Flywheel_cog]        = flywheel.GetBodyAndCOG();
 
-    GearB_body->SetPos(Rotor_cog);
-    gearB.hideBody();gearC.hideBody();gearD.hideBody();gearE.hideBody();gearF.hideBody();flywheel.hideBody();
+    // GearB_body->SetPos(Rotor_cog);
+    // gearB.hideBody();gearC.hideBody();gearD.hideBody();gearE.hideBody();gearF.hideBody();flywheel.hideBody();
     
     AddAxis(sys, FrameGlobal_cog, 100, 2, 2);
     AddAxis(sys, FrameGlobal_cog, 2, 100, 2, ChColor(0,1,0));
     AddAxis(sys, FrameGlobal_cog, 2, 2, 100, ChColor(0,0,1));
 
-    frameGlobal.hideBody();
-    gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
+    // frameGlobal.hideBody();
+    // gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
 
     // CreateJoint(Stator_body,    FrameGlobal_body,   sys, JointType::FIXED);
     // CreateJoint(Rotor_body, Stator_body, sys, JointType::REVOLUTE, true);
@@ -294,7 +284,7 @@ int main(int argc, char* argv[]) {
     vis->Initialize();
     vis->AddLogo();
     vis->AddSkyBox();
-    vis->AddCamera(ChVector3d(400, 400, -10), Rotor_cog);
+    vis->AddCamera(ChVector3d(400, 400, -10), FrameGlobal_cog);
     vis->AddLight(ChVector3d(200.f, 400.f, -10.f), 300, ChColor(0.7f, 0.7f, 0.7f));
     vis->EnableBodyFrameDrawing(true);
     vis->EnableLinkFrameDrawing(true);
