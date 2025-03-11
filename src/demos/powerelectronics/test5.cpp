@@ -237,52 +237,38 @@ class RigidBody {
     };
         
 int main(int argc, char* argv[]) {
-    ChSystemNSC sys = GravetySetup();   
-    std::vector<std::string> file_names = {"" , // empty value to start with index 1
-        "body_1_1",     // ("Part1-1");
-        "body_2_1",     // ("GearA-2");
-        "body_3_1",     // ("GearF-1");
-        "body_4_1",     // ("frame-1");
-        "body_5_1",     // ("GearB-1");
-        "body_6_1",     // ("GearC-1");
-        "body_7_1",     // ("GearD-1");
-        "body_8_1",     // ("GearE-1");
-        "body_9_1",     // ("Part2_flywheel-1");
-        "body_10_1"     // ("Part2_dyno-1");
-    };
+    ChSystemNSC sys = GravetySetup();
+
     std::vector<std::unique_ptr<RigidBody>> bodies(file_names.size());
     std::vector<std::shared_ptr<ChBody>> body_ptrs(file_names.size());
     std::vector<ChVector3d> cogs(file_names.size());
-    std::vector<ChVector3d> positions = {ChVector3d(0,0,0),
-        ChVector3d(-153.681408502864,232.071341649174,257.256405065421),
-        ChVector3d(-153.681408502864,316.571341649174,257.256405065421),
-        ChVector3d(-153.681408502864,-62.0286583508263,257.256405065421),
-        ChVector3d(10.0501781487224,127.271341649174,219.573424974887),
-        ChVector3d(-183.793091163963,320.571341649174,254.366929798653),
-        ChVector3d(-213.749821851278,320.571341649174,280.873424974888),
-        ChVector3d(-213.749821851277,-66.0286583508263,280.873424974888),
-        ChVector3d(-183.793091163963,-66.0286583508263,254.366929798653),
-        ChVector3d(-213.749821851277,127.271341649174,280.873424974888),
-        ChVector3d(-153.681408502864,15.4713416491736,257.256405065421)
+    struct BodyData {
+        std::string file_name;
+        ChVector3d position;
+        ChQuaternion<> rotation;
     };
-    std::vector<ChQuaternion<>> rotss = { ChQuaternion<>(0.0,0.0,0.0,0.0),
-        ChQuaternion<>(0.344860417986101,-0.344860417986101,0.617309721376921,0.617309721376921),
-        ChQuaternion<>(0.69219181681608,-0.69219181681608,0.144466220040721,0.144466220040721),
-        ChQuaternion<>(0.682163121105785,0.682163121105785,0.186154441803611,-0.186154441803611),
-        ChQuaternion<>(1,0,0,0),
-        ChQuaternion<>(0.590890270601115,0.590890270601115,0.388392440849382,-0.388392440849382),
-        ChQuaternion<>(-0.0817797748423181,-0.0817797748423181,0.702361778876627,-0.702361778876627),
-        ChQuaternion<>(0.707106781186548,-0.707106781186547,-8.1335083852247e-17,0),
-        ChQuaternion<>(-0.227257494306092,0.227257494306092,0.669592436696918,0.669592436696918),
-        ChQuaternion<>(0.661716586109785,0.661716586109785,-0.249261227765594,0.249261227765594),
-        ChQuaternion<>(0.679959230544171,0.679959230544171,0.194050108986773,-0.194050108986773)
+    // Initialize data manually
+    std::vector<BodyData> body_data = {{"null", ChVector3d(0.0f,0.0f,0.0f), ChQuaternion<>(0.0f,0.0f,0.0f,0.0f)},
+        {"body_4_1",    ChVector3d(10.0501781487224,127.271341649174,219.573424974887),       ChQuaternion<>(1,0,0,0)},                                                                     // frame    
+        {"body_1_1",    ChVector3d(-153.681408502864,232.071341649174,257.256405065421),      ChQuaternion<>(0.344860417986101,-0.344860417986101,0.617309721376921,0.617309721376921)},    // Motor    
+        {"body_10_1",   ChVector3d(-153.681408502864,15.4713416491736,257.256405065421),      ChQuaternion<>(0.679959230544171,0.679959230544171,0.194050108986773,-0.194050108986773)},    // dyno     
+        {"body_9_1",    ChVector3d(-213.749821851277,127.271341649174,280.873424974888),      ChQuaternion<>(0.661716586109785,0.661716586109785,-0.249261227765594,0.249261227765594)},    // flywheel     
+        {"body_2_1",    ChVector3d(-153.681408502864,316.571341649174,257.256405065421),      ChQuaternion<>(0.69219181681608,-0.69219181681608,0.144466220040721,0.144466220040721)},      // GearA     
+        {"body_3_1",    ChVector3d(-153.681408502864,-62.0286583508263,257.256405065421),     ChQuaternion<>(0.682163121105785,0.682163121105785,0.186154441803611,-0.186154441803611)},    // GearF     
+        {"body_5_1",    ChVector3d(-183.793091163963,320.571341649174,254.366929798653),      ChQuaternion<>(0.590890270601115,0.590890270601115,0.388392440849382,-0.388392440849382)},    // GearB     
+        {"body_6_1",    ChVector3d(-213.749821851278,320.571341649174,280.873424974888),      ChQuaternion<>(-0.0817797748423181,-0.0817797748423181,0.702361778876627,-0.702361778876627)},// GearC    
+        {"body_7_1",    ChVector3d(-213.749821851277,-66.0286583508263,280.873424974888),     ChQuaternion<>(0.707106781186548,-0.707106781186547,-8.1335083852247e-17,0)},                 // GearD     
+        {"body_8_1",    ChVector3d(-183.793091163963,-66.0286583508263,254.366929798653),     ChQuaternion<>(-0.227257494306092,0.227257494306092,0.669592436696918,0.669592436696918)}     // GearE     
     };
-
-    // Initialize RigidBody objects and store values (starting from index 1)
-    for (size_t i = 1; i < file_names.size(); ++i) {
-        if(i==4)bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i], ChColor(0.6f,0.6f,0.6f));
-        else if(i==10)bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i], ChColor(1.0f,0.0f,0.0f));
-        else bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i]);
+    float bri = 0.9;
+    for (size_t i = 1; i < body_data.size(); i++) {
+        auto& [name, pos, rot] = body_data[i];  // Structured binding
+    
+        if(i == 1)              bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(bri, bri, bri));
+        else if(i == 2)         bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(0.0f, 0.0f, 1.0f));
+        else if(i == 3)         bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(0.0f, 1.0f, 0.0f));
+        else if(i>=5 && i<=10)  bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(1.0f, 0.1f, 0.2f));
+        else                    bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot);
     }
 
     // Extract body and COG values (starting from index 1)
@@ -314,7 +300,7 @@ int main(int argc, char* argv[]) {
     vis->AddLogo();
     vis->AddSkyBox();
     vis->AddCamera(ChVector3d(0, 0, 500), ChVector3d(0, 0, 0));
-    float bri = 0.9;
+    bri = 0.9;
     vis->AddLight(ChVector3d(50.f, -400.f, -400.f), 300, ChColor(1, 1, 1));
     vis->AddLight(ChVector3d(-50.f, 400.f, 400.f), 300, ChColor(bri, bri, bri));
     vis->AddLight(ChVector3d(-50.f, -400.f, -400.f), 300, ChColor(bri, bri, bri));
