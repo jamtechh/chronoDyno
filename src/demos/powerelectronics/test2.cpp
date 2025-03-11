@@ -244,7 +244,7 @@ class RigidBody {
     };
         
 int main(int argc, char* argv[]) {
-    // printSom();
+    printSom();
     ChSystemNSC sys = GravetySetup();
 
     RigidBody frameGlobal(sys, "Part4_frame", 7500.00 / (1e9), true);
