@@ -232,16 +232,16 @@ class RigidBody {
                 std::cout << "Center of Gravity: " << cog << " [mm]" << "\n";
                 std::cout << "Inertia Tensor:\n" << inertia << " [kg*mm^2]" << "\n\n";
             }
-            if(1){AddVisualizationBall(system, positionn, ChColor(0,1,0));}
+            if(0){AddVisualizationBall(system, positionn, ChColor(0,1,0));}
         }
     };
         
 int main(int argc, char* argv[]) {
     ChSystemNSC sys = GravetySetup();
 
-    std::vector<std::unique_ptr<RigidBody>> bodies(file_names.size());
-    std::vector<std::shared_ptr<ChBody>> body_ptrs(file_names.size());
-    std::vector<ChVector3d> cogs(file_names.size());
+    std::vector<std::unique_ptr<RigidBody>> bodies(11);     // Total 10 parts with 0 index Null
+    std::vector<std::shared_ptr<ChBody>> body_ptrs(11);
+    std::vector<ChVector3d> cogs(11);
     struct BodyData {
         std::string file_name;
         ChVector3d position;
@@ -263,12 +263,12 @@ int main(int argc, char* argv[]) {
     float bri = 0.9;
     for (size_t i = 1; i < body_data.size(); i++) {
         auto& [name, pos, rot] = body_data[i];  // Structured binding
-    
         if(i == 1)              bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(bri, bri, bri));
         else if(i == 2)         bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(0.0f, 0.0f, 1.0f));
         else if(i == 3)         bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(0.0f, 1.0f, 0.0f));
-        else if(i>=5 && i<=10)  bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(1.0f, 0.1f, 0.2f));
-        else                    bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot);
+        else if(i>=5 && i<=9 && i!=7)  bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(1.0f, 0.1f, 0.2f));
+        else if(i==7||i==10)    bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(1.0f, 1.0f, 0.0f));
+        else                    bodies[i] = std::make_unique<RigidBody>(sys, name, (pos - body_data[1].position), rot, ChColor(1.0f, 0.1f, 1.0f));
     }
 
     // Extract body and COG values (starting from index 1)
