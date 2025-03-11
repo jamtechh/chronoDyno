@@ -195,29 +195,29 @@ my_demo/fast:
 	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/build
 .PHONY : my_demo/fast
 
-test3.o: test3.cpp.o
-.PHONY : test3.o
+test5.o: test5.cpp.o
+.PHONY : test5.o
 
 # target to build an object file
-test3.cpp.o:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test3.cpp.o
-.PHONY : test3.cpp.o
+test5.cpp.o:
+	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o
+.PHONY : test5.cpp.o
 
-test3.i: test3.cpp.i
-.PHONY : test3.i
+test5.i: test5.cpp.i
+.PHONY : test5.i
 
 # target to preprocess a source file
-test3.cpp.i:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test3.cpp.i
-.PHONY : test3.cpp.i
+test5.cpp.i:
+	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.i
+.PHONY : test5.cpp.i
 
-test3.s: test3.cpp.s
-.PHONY : test3.s
+test5.s: test5.cpp.s
+.PHONY : test5.s
 
 # target to generate assembly for a file
-test3.cpp.s:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test3.cpp.s
-.PHONY : test3.cpp.s
+test5.cpp.s:
+	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.s
+.PHONY : test5.cpp.s
 
 # Help Target
 help:
@@ -234,9 +234,9 @@ help:
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... my_demo"
-	@echo "... test3.o"
-	@echo "... test3.i"
-	@echo "... test3.s"
+	@echo "... test5.o"
+	@echo "... test5.i"
+	@echo "... test5.s"
 .PHONY : help
 
 

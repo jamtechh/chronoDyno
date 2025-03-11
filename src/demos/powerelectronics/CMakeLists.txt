@@ -168,11 +168,11 @@ endif()
 # files in your project. 
 #--------------------------------------------------------------
 set(SRC_FILES
-    swFiles/cpp/dyno2.cpp  # Add this line
+    # swFiles/cpp/dyno2.cpp  # Add this line
 )
 
 # add_executable(my_demo test1.cpp ${SOURCES})
-add_executable(my_demo test3.cpp ${SOURCES} 
+add_executable(my_demo test5.cpp ${SOURCES} 
 # ${CMAKE_SOURCE_DIR}/src/swFiles/cpp/dyno2.cpp
 # ${CMAKE_SOURCE_DIR}/src/swFiles/cpp/dyno2.h         # I added this part to include the sw obj import file code
 )

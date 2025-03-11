@@ -33,10 +33,11 @@
 #include "chrono/core/ChRealtimeStep.h"
 #include "chrono/geometry/ChTriangleMeshSoup.h"
 #include "chrono/physics/ChBodyEasy.h"
+#include "chrono/physics/ChBodyAuxRef.h"
 #include "chrono/physics/ChLinkMotorRotationSpeed.h"
 #include "chrono/physics/ChSystemNSC.h"
-#include "chrono/core/ChRealtimeStep.h"
 #include "chrono/core/ChRandom.h"
+#include "chrono/core/ChFrame.h"
 
 #include "chrono_irrlicht/ChVisualSystemIrrlicht.h"
 // #include "chrono_irrlicht/ChIrrMeshTools.h"
@@ -154,8 +155,8 @@ void CreateJoint(std::shared_ptr<ChBody> bodyA, std::shared_ptr<ChBody> bodyB, C
 
 class RigidBody {
     public:
-        RigidBody(ChSystemNSC& sys, const std::string& file_name, bool is_fixed = false)
-            : system(sys), obj_file(file_name), is_fixed(is_fixed) {
+        RigidBody(ChSystemNSC& sys, const std::string& file_name, const ChVector3d& positionn, ChQuaternion<> rotts, bool is_fixed = false)
+            : system(sys), obj_file(file_name), positionn(positionn), rotts(rotts), is_fixed(is_fixed) {
             SetupRigidBody();
         }
     
@@ -172,7 +173,8 @@ class RigidBody {
         }
         void hideBody(){mesh->SetVisible(false);}
         void setPos(ChVector3d poss){body->SetPos(poss);}
-        void setMass(){body->SetMass(false);}
+        void setRot(ChQuaternion<>rott){body->SetRot(rott);}
+        void setMass(double masss){body->SetMass(masss);}
         void setInertiaXX(){body->SetInertiaXX(false);}
         void setInertiaXY(){body->SetInertiaXY(false);}
         void showCG(){AddVisualizationBall(system, body->GetPos());}
@@ -183,6 +185,8 @@ class RigidBody {
         std::shared_ptr<ChBody> body;
         std::shared_ptr<ChVisualShapeTriangleMesh>mesh;
         ChVector3d cog;
+        ChVector3d positionn;
+        ChQuaternion<> rotts;
     
         void SetupRigidBody() {
             // Load mesh
@@ -206,7 +210,8 @@ class RigidBody {
             body->SetFixed(is_fixed);
             body->SetMass(mass);
             body->SetInertiaXX(ChVector3d(inertia(0, 0), inertia(1, 1), inertia(2, 2)));
-            body->SetPos(cog);
+            body->SetPos(positionn);
+            body->SetRot(rotts);
 
             system.Add(body);
     
@@ -214,17 +219,18 @@ class RigidBody {
             mesh = chrono_types::make_shared<ChVisualShapeTriangleMesh>();
             mesh->SetMesh(trimesh);
             // mesh->SetVisible(true);
-            body->AddVisualShape(mesh, ChFrame<>(-cog, ChMatrix33<>(1)));
+            body->AddVisualShape(mesh, ChFrame<>(ChVector3d(0,0,0), ChMatrix33<>(1)));
     
             // Debug Output
             if(0){
-            std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n";
-            std::cout << "!!!!!!! " << obj_file << " -> Inertia properties !!!!!!!" << "\n";
-            std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n";
-            std::cout << "Mass: " << mass << " [kg]" << "\n";
-            std::cout << "Center of Gravity: " << cog << " [mm]" << "\n";
-            std::cout << "Inertia Tensor:\n" << inertia << " [kg*mm^2]" << "\n\n";
+                std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n";
+                std::cout << "!!!!!!! " << obj_file << " -> Inertia properties !!!!!!!" << "\n";
+                std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n";
+                std::cout << "Mass: " << mass << " [kg]" << "\n";
+                std::cout << "Center of Gravity: " << cog << " [mm]" << "\n";
+                std::cout << "Inertia Tensor:\n" << inertia << " [kg*mm^2]" << "\n\n";
             }
+            if(1){AddVisualizationBall(system, positionn, ChColor(0,1,0));}
         }
     };
         
@@ -245,10 +251,34 @@ int main(int argc, char* argv[]) {
     std::vector<std::unique_ptr<RigidBody>> bodies(file_names.size());
     std::vector<std::shared_ptr<ChBody>> body_ptrs(file_names.size());
     std::vector<ChVector3d> cogs(file_names.size());
+    std::vector<ChVector3d> positions = {ChVector3d(0,0,0),
+        ChVector3d(-153.681408502864,232.071341649174,257.256405065421),
+        ChVector3d(-153.681408502864,316.571341649174,257.256405065421),
+        ChVector3d(-153.681408502864,-62.0286583508263,257.256405065421),
+        ChVector3d(10.0501781487224,127.271341649174,219.573424974887),
+        ChVector3d(-183.793091163963,320.571341649174,254.366929798653),
+        ChVector3d(-213.749821851278,320.571341649174,280.873424974888),
+        ChVector3d(-213.749821851277,-66.0286583508263,280.873424974888),
+        ChVector3d(-183.793091163963,-66.0286583508263,254.366929798653),
+        ChVector3d(-213.749821851277,127.271341649174,280.873424974888),
+        ChVector3d(-153.681408502864,15.4713416491736,257.256405065421)
+    };
+    std::vector<ChQuaternion<>> rotss = { ChQuaternion<>(0.0,0.0,0.0,0.0),
+        ChQuaternion<>(0.344860417986101,-0.344860417986101,0.617309721376921,0.617309721376921),
+        ChQuaternion<>(0.69219181681608,-0.69219181681608,0.144466220040721,0.144466220040721),
+        ChQuaternion<>(0.682163121105785,0.682163121105785,0.186154441803611,-0.186154441803611),
+        ChQuaternion<>(1,0,0,0),
+        ChQuaternion<>(0.590890270601115,0.590890270601115,0.388392440849382,-0.388392440849382),
+        ChQuaternion<>(-0.0817797748423181,-0.0817797748423181,0.702361778876627,-0.702361778876627),
+        ChQuaternion<>(0.707106781186548,-0.707106781186547,-8.1335083852247e-17,0),
+        ChQuaternion<>(-0.227257494306092,0.227257494306092,0.669592436696918,0.669592436696918),
+        ChQuaternion<>(0.661716586109785,0.661716586109785,-0.249261227765594,0.249261227765594),
+        ChQuaternion<>(0.679959230544171,0.679959230544171,0.194050108986773,-0.194050108986773)
+    };
 
     // Initialize RigidBody objects and store values (starting from index 1)
     for (size_t i = 1; i < file_names.size(); ++i) {
-        bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], true);
+        bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i]);
     }
 
     // Extract body and COG values (starting from index 1)
@@ -258,26 +288,15 @@ int main(int argc, char* argv[]) {
         cogs[i] = cog;
     }
 
-    bodies[1]->setPos(ChVector3d(-153.681408502864,232.071341649174,257.256405065421));
-    bodies[2]->setPos(ChVector3d(-153.681408502864,316.571341649174,257.256405065421));
-    bodies[3]->setPos(ChVector3d(-153.681408502864,-62.0286583508263,257.256405065421));
-    bodies[4]->setPos(ChVector3d(10.0501781487224,127.271341649174,219.573424974887));
-    bodies[5]->setPos(ChVector3d(-183.793091163963,320.571341649174,254.366929798653));
-    bodies[6]->setPos(ChVector3d(-213.749821851278,320.571341649174,280.873424974888));
-    bodies[7]->setPos(ChVector3d(-213.749821851277,-66.0286583508263,280.873424974888));
-    bodies[8]->setPos(ChVector3d(-183.793091163963,-66.0286583508263,254.366929798653));
-    bodies[9]->setPos(ChVector3d(-213.749821851277,127.271341649174,280.873424974888));
-    bodies[10]->setPos(ChVector3d(-153.681408502864,15.4713416491736,257.256405065421));
-    
-    if (cogs.size() > 4) {
-        AddAxis(sys, cogs[4], 100, 2, 2);
-        AddAxis(sys, cogs[4], 2, 100, 2, ChColor(0,1,0));
-        AddAxis(sys, cogs[4], 2, 2, 100, ChColor(0,0,1));
-    }
 
+    if (cogs.size() > 4) {
+        AddAxis(sys, ChVector3d(0,0,0), 100, 2, 2);
+        AddAxis(sys, ChVector3d(0,0,0), 2, 100, 2, ChColor(0,1,0));
+        AddAxis(sys, ChVector3d(0,0,100), 2, 2, 100, ChColor(0,0,1));
+    }
     
     // frameGlobal.hideBody();
-    // gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
+    gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
 
     // CreateJoint(Stator_body,    FrameGlobal_body,   sys, JointType::FIXED);
     // CreateJoint(Rotor_body, Stator_body, sys, JointType::REVOLUTE, true);
@@ -293,16 +312,13 @@ int main(int argc, char* argv[]) {
     vis->Initialize();
     vis->AddLogo();
     vis->AddSkyBox();
-    vis->AddCamera(ChVector3d(400, 400, -10), cogs[4]);
-    vis->AddLight(ChVector3d(200.f, 400.f, -10.f), 300, ChColor(0.7f, 0.7f, 0.7f));
+    vis->AddCamera(ChVector3d(0, 0, 500), ChVector3d(0, 0, 0));
+    vis->AddLight(ChVector3d(50.f, -100.f, -400.f), 300, ChColor(1, 1, 1));
+    vis->AddLight(ChVector3d(-50.f, 100.f, 400.f), 300, ChColor(1, 1, 1));
     vis->EnableBodyFrameDrawing(true);
     vis->EnableLinkFrameDrawing(true);
 
-    int brake_flag = 1;
-
-    while (brake_flag == 1) {         
-        if (vis->Run()) { brake_flag = 1; }
-        else { brake_flag = 0; }
+    while (vis->Run()) {         
         vis->BeginScene();
         vis->Render();
         vis->EndScene();
