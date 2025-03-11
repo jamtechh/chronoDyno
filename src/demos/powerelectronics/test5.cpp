@@ -314,8 +314,11 @@ int main(int argc, char* argv[]) {
     vis->AddLogo();
     vis->AddSkyBox();
     vis->AddCamera(ChVector3d(0, 0, 500), ChVector3d(0, 0, 0));
-    vis->AddLight(ChVector3d(50.f, -100.f, -400.f), 300, ChColor(1, 1, 1));
-    vis->AddLight(ChVector3d(-50.f, 100.f, 400.f), 300, ChColor(1, 1, 1));
+    float bri = 0.9;
+    vis->AddLight(ChVector3d(50.f, -400.f, -400.f), 300, ChColor(1, 1, 1));
+    vis->AddLight(ChVector3d(-50.f, 400.f, 400.f), 300, ChColor(bri, bri, bri));
+    vis->AddLight(ChVector3d(-50.f, -400.f, -400.f), 300, ChColor(bri, bri, bri));
+    vis->AddLight(ChVector3d(-50.f, -400.f, 400.f), 300, ChColor(bri, bri, bri));
     vis->EnableBodyFrameDrawing(true);
     vis->EnableLinkFrameDrawing(true);
 
