@@ -195,53 +195,29 @@ my_demo/fast:
 	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/build
 .PHONY : my_demo/fast
 
-__/__/swFiles/cpp/dyno2.o: __/__/swFiles/cpp/dyno2.cpp.o
-.PHONY : __/__/swFiles/cpp/dyno2.o
+test3.o: test3.cpp.o
+.PHONY : test3.o
 
 # target to build an object file
-__/__/swFiles/cpp/dyno2.cpp.o:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/__/__/swFiles/cpp/dyno2.cpp.o
-.PHONY : __/__/swFiles/cpp/dyno2.cpp.o
+test3.cpp.o:
+	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test3.cpp.o
+.PHONY : test3.cpp.o
 
-__/__/swFiles/cpp/dyno2.i: __/__/swFiles/cpp/dyno2.cpp.i
-.PHONY : __/__/swFiles/cpp/dyno2.i
-
-# target to preprocess a source file
-__/__/swFiles/cpp/dyno2.cpp.i:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/__/__/swFiles/cpp/dyno2.cpp.i
-.PHONY : __/__/swFiles/cpp/dyno2.cpp.i
-
-__/__/swFiles/cpp/dyno2.s: __/__/swFiles/cpp/dyno2.cpp.s
-.PHONY : __/__/swFiles/cpp/dyno2.s
-
-# target to generate assembly for a file
-__/__/swFiles/cpp/dyno2.cpp.s:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/__/__/swFiles/cpp/dyno2.cpp.s
-.PHONY : __/__/swFiles/cpp/dyno2.cpp.s
-
-test2.o: test2.cpp.o
-.PHONY : test2.o
-
-# target to build an object file
-test2.cpp.o:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test2.cpp.o
-.PHONY : test2.cpp.o
-
-test2.i: test2.cpp.i
-.PHONY : test2.i
+test3.i: test3.cpp.i
+.PHONY : test3.i
 
 # target to preprocess a source file
-test2.cpp.i:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test2.cpp.i
-.PHONY : test2.cpp.i
+test3.cpp.i:
+	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test3.cpp.i
+.PHONY : test3.cpp.i
 
-test2.s: test2.cpp.s
-.PHONY : test2.s
+test3.s: test3.cpp.s
+.PHONY : test3.s
 
 # target to generate assembly for a file
-test2.cpp.s:
-	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test2.cpp.s
-.PHONY : test2.cpp.s
+test3.cpp.s:
+	cd /home/jamiul/chronoDyno/build && $(MAKE) $(MAKESILENT) -f src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make src/demos/powerelectronics/CMakeFiles/my_demo.dir/test3.cpp.s
+.PHONY : test3.cpp.s
 
 # Help Target
 help:
@@ -258,12 +234,9 @@ help:
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... my_demo"
-	@echo "... __/__/swFiles/cpp/dyno2.o"
-	@echo "... __/__/swFiles/cpp/dyno2.i"
-	@echo "... __/__/swFiles/cpp/dyno2.s"
-	@echo "... test2.o"
-	@echo "... test2.i"
-	@echo "... test2.s"
+	@echo "... test3.o"
+	@echo "... test3.i"
+	@echo "... test3.s"
 .PHONY : help
 
 

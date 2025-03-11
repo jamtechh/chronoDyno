@@ -49,7 +49,7 @@
 // #include "chrono_powerelectronics/ChElectronicsSources.h"
 #include "chrono_powerelectronics/ChElectronicsCosimulation.h"
 #include "chrono_powerelectronics/circuits/ChElectronicMotor.h"
-#include "swFiles/cpp/dyno2.h"
+// #include "swFiles/cpp/dyno2.h"
 
 // ============================
 // ======== NAMESPACES ========
@@ -230,10 +230,7 @@ class RigidBody {
     };
         
 int main(int argc, char* argv[]) {
-    // printSom();
     ChSystemNSC sys = GravetySetup();
-
-    // ImportSolidworksSystemCpp(sys);
 
     RigidBody frameGlobal(sys, "body_4_1", 7500.00 / (1e9), true);
     // RigidBody frameGlobal2(sys, "Part4_frame", 7500.00 / (1e9), true);
