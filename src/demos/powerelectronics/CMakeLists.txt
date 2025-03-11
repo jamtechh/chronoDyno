@@ -172,9 +172,10 @@ set(SRC_FILES
 )
 
 # add_executable(my_demo test1.cpp ${SOURCES})
-add_executable(my_demo test2.cpp ${SOURCES} 
-${CMAKE_SOURCE_DIR}/src/swFiles/cpp/dyno2.cpp
-${CMAKE_SOURCE_DIR}/src/swFiles/cpp/dyno2.h)# I added this part to include the sw obj import file code
+add_executable(my_demo test3.cpp ${SOURCES} 
+# ${CMAKE_SOURCE_DIR}/src/swFiles/cpp/dyno2.cpp
+# ${CMAKE_SOURCE_DIR}/src/swFiles/cpp/dyno2.h         # I added this part to include the sw obj import file code
+)
 # add_executable(my_demo modified_PE_1.cpp ${SOURCES})
 
 #--------------------------------------------------------------
