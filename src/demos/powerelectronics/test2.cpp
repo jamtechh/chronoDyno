@@ -49,6 +49,7 @@
 // #include "chrono_powerelectronics/ChElectronicsSources.h"
 #include "chrono_powerelectronics/ChElectronicsCosimulation.h"
 #include "chrono_powerelectronics/circuits/ChElectronicMotor.h"
+#include "swFiles/cpp/dyno2.h"
 
 // ============================
 // ======== NAMESPACES ========
@@ -243,6 +244,7 @@ class RigidBody {
     };
         
 int main(int argc, char* argv[]) {
+    // printSom();
     ChSystemNSC sys = GravetySetup();
 
     RigidBody frameGlobal(sys, "Part4_frame", 7500.00 / (1e9), true);
@@ -270,45 +272,17 @@ int main(int argc, char* argv[]) {
 
     GearB_body->SetPos(Rotor_cog);
     gearB.hideBody();gearC.hideBody();gearD.hideBody();gearE.hideBody();gearF.hideBody();flywheel.hideBody();
-    frameGlobal.hideBody();
-    // gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
-
-    CreateJoint(Stator_body,    FrameGlobal_body,   sys, JointType::FIXED);
-    CreateJoint(Rotor_body, Stator_body, sys, JointType::REVOLUTE, true);
-    CreateJoint(Gear_body,      FrameGlobal_body,   sys, JointType::FIXED);
-
+    
     AddAxis(sys, FrameGlobal_cog, 100, 2, 2);
     AddAxis(sys, FrameGlobal_cog, 2, 100, 2, ChColor(0,1,0));
     AddAxis(sys, FrameGlobal_cog, 2, 2, 100, ChColor(0,0,1));
 
-    // =============================================================================
-    // ======== F / T DEFINITION -> TORSIONAL SPRING/DAMPER: Rotor - Stator ========
-    // =============================================================================
-    // ======== Torsional spring coefficient ========
-    double k_eq_Rotor_Stator_spr = 0.0; // [(N * m) / rad]
-    k_eq_Rotor_Stator_spr = k_eq_Rotor_Stator_spr * 1e3 * 1e3; // Conversion to ([kg]-[mm]-[s]) 
+    frameGlobal.hideBody();
+    gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
 
-    // ======== Torsional damping coefficient ========
-    double r_ShaftBushing_experimental = 0.407e-4; //[(N*m*s)/rad]
-    double r_eq_Rotor_Stator_spr = r_ShaftBushing_experimental * 1e3 * 1e3; // Conversion to ([kg]-[mm]-[s])  
-
-    // ======== Torsional spring/damper implementation ========
-    auto Rotor_Stator_Torsional_Spring = chrono_types::make_shared<ChLinkRSDA>();
-    ChVector3d Rotor_Stator_Torsional_Spring_Position(Stator_body->GetPos());  //[mm] set the position in the 3D space of the link respect to the absolute frame
-    Rotor_Stator_Torsional_Spring_Position[2] += 6.0;  //[mm] Rise the position of the spring along y-axis in order to see it better in the animation
-    ChQuaternion<> Rotor_Stator_Torsional_Spring_Orientation;
-    Rotor_Stator_Torsional_Spring_Orientation.SetFromAngleAxis(0.0 * M_PI / 180.0, ChVector3d(0, 1, 0)); // !!! IMPORTANT !!! the Torsional Spring is oriented always arround Z-axis -> Set correctly the orientation 
-    ChFrame<> Rotor_Stator_Torsional_Spring_Frame(Rotor_Stator_Torsional_Spring_Position, Rotor_Stator_Torsional_Spring_Orientation);
-    Rotor_Stator_Torsional_Spring->Initialize(Rotor_body,                                   // Body 1 
-        Stator_body,                                  // Body 2 
-        false,                                        // the two following frames are in absolute, not relative, coords.
-        Rotor_Stator_Torsional_Spring_Frame,          // Location and orientation of the Body 1 frame 
-        Rotor_Stator_Torsional_Spring_Frame);         // Location and orientation of the Body 1 frame
-    Rotor_Stator_Torsional_Spring->SetRestAngle(0.0 * (M_PI / 180.0)); //[rad] Starting angular position
-    Rotor_Stator_Torsional_Spring->SetSpringCoefficient(k_eq_Rotor_Stator_spr); // [(kg mm mm)/(s^2 rad)] that should be the SI conversion ([kg]-[mm]-[s]) of [N m/rad]
-    Rotor_Stator_Torsional_Spring->SetDampingCoefficient(r_eq_Rotor_Stator_spr); // [(kg mm mm s)/(s^2 mm rad)] that should be the SI conversion ([kg]-[mm]-[s]) of [N m s/rad]
-    sys.AddLink(Rotor_Stator_Torsional_Spring);
-    Rotor_Stator_Torsional_Spring->AddVisualShape(chrono_types::make_shared<ChVisualShapeRotSpring>(10, 15)); // var1 = radius of the spring, var2 = graphical resolution of the spring
+    // CreateJoint(Stator_body,    FrameGlobal_body,   sys, JointType::FIXED);
+    // CreateJoint(Rotor_body, Stator_body, sys, JointType::REVOLUTE, true);
+    // CreateJoint(Gear_body,      FrameGlobal_body,   sys, JointType::FIXED);
     
     // ===============================================
     // ======== IRRLICHT VISUALIZATION SYSTEM ========
@@ -325,163 +299,14 @@ int main(int argc, char* argv[]) {
     vis->EnableBodyFrameDrawing(true);
     vis->EnableLinkFrameDrawing(true);
 
-    // =================================
-    // ======== SOLVER SETTINGS ========
-    // =================================
-    sys.SetTimestepperType(ChTimestepper::Type::EULER_IMPLICIT_PROJECTED);
-    //sys.SetTimestepperType(ChTimestepper::Type::RUNGEKUTTA45);
-    sys.SetSolverType(ChSolver::Type::BARZILAIBORWEIN);
-    sys.GetSolver()->AsIterative()->SetMaxIterations(100000.0);
-    sys.SetMaxPenetrationRecoverySpeed(1000.1);
-    sys.SetMinBounceSpeed(0.001);
-    ChRealtimeStepTimer realtime_timer;
+    int brake_flag = 1;
 
-    // =============================================================
-    // ======== SET THE MULTI-PHYSICS SYMULATION PARAMETERS ========
-    // =============================================================
-    // ======== Mechanical domain ========
-    double f_ToSample_mechanic = 0.5e4; // [Hz]
-    double t_step_mechanic = 1 / f_ToSample_mechanic; // [s]
-    // ======== Electronic domain ======== 
-    double f_ToSample_electronic = 0.5e4; // [Hz]                              Frequency at which the electronic domain is called respect to the global time line
-    double T_ToSample_electronic = 1 / f_ToSample_electronic;               // Period at which the electronic domain is called respect to the global time line
-    double T_sampling_electronic = t_step_mechanic;                         // Time window of the electronic (SPICE) simulation
-    double t_step_electronic = 1.0e-6; // [s]                                  Discretization of the electronic time window
-
-    // ==================================================
-    // ======== INITIALIZE THE MOTOR ========
-    // ==================================================
-
-    ChElectronicMotor motor(Rotor_body, t_step_electronic);
-    double kt_motor = 0.1105*1e6;//*1e3*1e3;  // Motor torque constant [Nm/A]
-    double ke_motor = -0.0953*1.0;  // Motor back EMF constant [V/(rad/s)]
-
-    motor.InitParams(kt_motor,ke_motor);
-    // motor.SetShaftAngVel(0.0);
-    motor.Initialize();
-
-
-    // ==================================================
-    // ======== MULTI-PHYSICS CO-SYMULATION LOOP ========
-    // ==================================================
-
-    // ======== SET -> the Multi-physics timeline ========
-    double t_simulation_STOP = 400.0e-3; //[s]
-    double t_sim_mechanics = 0.0; //[s] 
-    double t_sim_electronics = 0.0; //[s]
-    double t_sampling_electronic_counter = 0; //[s] This variable is needed to count the event at which the Electronic domain need to be called respect to the Global Time-line
-    int brake_flag = 1; // Set a brake flag in the case you want to stop the simulation before: t_simulation_STOP 
-
-    // ======== INITIALIZE -> some needed variables ========
-    double IVprobe1 = 0.0; //[A] Current circulating in the Motor
-    double T_PWM = 4000.0e-6; //[s] PWM Period
-    double Duty_PWM = 90.0 / 100; //[s] PWM Duty
-    double t_PWM_counter = 0.0; //[s] PWM Period
-    
-    // RTSCamera cameruu;
-    // const s32 LEFT_MOUSE_BUTTON = 0; // Assuming 0 corresponds to the left mouse button
-    auto camera = vis->GetActiveCamera();
-    // camera->setPosition(core::vector3df(0,0,0));
-
-    int frame_count = 0;
-    double fps = 0;
-    auto start_time = std::chrono::high_resolution_clock::now();
-    int i = 0;
-
-    while (brake_flag == 1) {
-        // ======== RUN -> the Irrlicht visualizer ========
-        // vis->Run();
-        // tools::drawGrid(vis.get(), 2, 2, 30, 30, ChCoordsys<>(ChVector3d(0, 0.01, 0), QuatFromAngleX(CH_PI_2)),ChColor(0.0f, 0.0f, 0.0f), true);
-
-        // auto camera_pos = camera->getPosition();
-        // auto camera_tar = camera->getTarget();
-        // printf("x = %lf\t y=%lf \t z=%lf \n", camera_pos.X, camera_pos.Y, camera_pos.Z);
-                        
-        if (vis->Run()) { brake_flag = 1; } // Check if the User wanted to stop de simulation before: t_simulation_STOP
+    while (brake_flag == 1) {         
+        if (vis->Run()) { brake_flag = 1; }
         else { brake_flag = 0; }
         vis->BeginScene();
         vis->Render();
         vis->EndScene();
-
-        // ======== SOLVE & UPDATE -> the Electronic domain ========
-        if (t_sim_mechanics > 1.0e-4){
-        // {printf("Hi \t\t\t\t\t\t\t\t !!!!!!!!!!!!!!!! \n");
-            if (t_PWM_counter < T_PWM * Duty_PWM)
-            {
-                motor.SetPWM(5.2); //[V]
-                t_PWM_counter += t_step_mechanic;
-                // printf("\t pwm \t\t");
-            }
-            else
-            {
-                motor.SetPWM(0.0); //[V]
-                t_PWM_counter += t_step_mechanic;
-                // printf("\t 0 \t\t");
-            }
-            if (t_PWM_counter >= T_PWM)
-            {
-                t_PWM_counter = 0.0;
-            }
-        }
-
-        if (t_sampling_electronic_counter >= T_ToSample_electronic)
-        {
-            // ======== COSIMULATE -> the SPICE circuit ========
-            motor.Advance(t_step_mechanic);        // This line makes the thing rotate !!!!!!
-            auto res = motor.GetResult();
-            // std::cout << "IVprobe1 " << res["vprobe1"].back() << std::endl;
-            std::cout << "fps =  " << fps << std::endl;
-            assert(!res.empty());
-            t_sampling_electronic_counter = 0;      // The variable is nulled to re-start with the counter for the next call of the electronic domain
-        }
-
-        frame_count++;
-        auto current_time = std::chrono::high_resolution_clock::now();
-        double elapsed_time = std::chrono::duration<double>(current_time - start_time).count();
-
-        if (elapsed_time >= 1.0) {  // Every second
-            fps = frame_count / elapsed_time;
-            frame_count = 0;
-            start_time = std::chrono::high_resolution_clock::now();
-        }
-
-        // _sleep(300.0e-3); // Wait until Python circuit solution is completed
-
-        // ======== RUN -> the Mechanic solver ========
-        sys.DoStepDynamics(t_step_mechanic);        // This line makes the thing rotate !!!!!!
-        realtime_timer.Spin(t_step_mechanic);
-
-        // ======== UPDATE -> the Multi-physics timeline ======== 
-        t_sampling_electronic_counter += t_step_mechanic;
-        t_sim_electronics += t_step_mechanic;
-        t_sim_mechanics += t_step_mechanic;
-
-        // int time = pow(99, pow(10, 10000));
-        // printf("%d",time);
-        // for(int i = 0; i<=time;){
-        //     // std::cout<<i;
-        //     i++;
-        // }
     }
     return 0;
 }
-
-
-    // AddVisualizationBall(sys, FrameGlobal_cog, ChColor(0.0f, 0.0f, 1.0f));
-    // AddVisualizationBall(sys, Rotor_cog, ChColor(1.0f, 0.0f, 0.0f), 5);
-    // AddVisualizationBall(sys, Stator_cog, ChColor(0.0f, 1.0f, 1.0f));
-    // AddVisualizationBall(sys, FrameGlobal_cog, ChColor(1.0f, 0.0f, 0.0f));
-    // AddVisualizationBall(sys, Rotor_cog, ChColor(1.0f, 0.0f, 0.0f), 5);
-    // AddVisualizationBall(sys, Rotor_cog, ChColor(1.0f, 0.0f, 0.0f), 5);
-    // AddAxis(sys, FrameGlobal_cog, 100, 2, 2);
-    // AddAxis(sys, FrameGlobal_cog, 2, 100, 2, ChColor(0,1,0));
-    // AddAxis(sys, FrameGlobal_cog, 2, 2, 100, ChColor(0,0,1));
-
-
-    
-    // This is how you declare call the class in the main function
-    // here auto will catch the data type of the function
-    // auto = std::shared_ptr<ChBody>
-    // auto FrameGlobal_body = frameGlobal.GetBody();          ChVector3d FrameGlobal_cog = frameGlobal.GetCOG();
-    // std::shared_ptr<ChBody> Rotor_body = rotor.GetBody();   ChVector3d Rotor_cog = rotor.GetCOG();
-    // std::shared_ptr<ChBody> Stator_body = stator.GetBody(); ChVector3d Stator_cog = stator.GetCOG();

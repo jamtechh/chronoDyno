@@ -167,6 +167,9 @@ endif()
 # Add the executable from your project and specify all C++ 
 # files in your project. 
 #--------------------------------------------------------------
+set(SRC_FILES
+    swFiles/cpp/dyno2.cpp  # Add this line
+)
 
 # add_executable(my_demo test1.cpp ${SOURCES})
 add_executable(my_demo test2.cpp ${SOURCES})

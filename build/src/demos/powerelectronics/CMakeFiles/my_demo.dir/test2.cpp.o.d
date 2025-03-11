@@ -1032,4 +1032,5 @@ src/demos/powerelectronics/CMakeFiles/my_demo.dir/test2.cpp.o: \
  /home/jamiul/chronoDyno/src/chrono_powerelectronics/circuits/ChElectronicMotor.h \
  /home/jamiul/chronoDyno/src/chrono_powerelectronics/circuits/ChElectronicCircuit.h \
  /home/jamiul/chronoDyno/src/chrono_powerelectronics/circuits/../ChElectronicsCosimResult.h \
- /home/jamiul/chronoDyno/src/chrono_powerelectronics/circuits/../ChElectronicsCosimulation.h
+ /home/jamiul/chronoDyno/src/chrono_powerelectronics/circuits/../ChElectronicsCosimulation.h \
+ /home/jamiul/chronoDyno/src/swFiles/cpp/dyno2.h
