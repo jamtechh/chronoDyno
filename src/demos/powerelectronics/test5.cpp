@@ -155,8 +155,8 @@ void CreateJoint(std::shared_ptr<ChBody> bodyA, std::shared_ptr<ChBody> bodyB, C
 
 class RigidBody {
     public:
-        RigidBody(ChSystemNSC& sys, const std::string& file_name, const ChVector3d& positionn, ChQuaternion<> rotts, bool is_fixed = false)
-            : system(sys), obj_file(file_name), positionn(positionn), rotts(rotts), is_fixed(is_fixed) {
+        RigidBody(ChSystemNSC& sys, const std::string& file_name, const ChVector3d& positionn, ChQuaternion<> rotts, ChColor color = ChColor(0.8f,0.8f,0.8f), bool is_fixed = false)
+            : system(sys), obj_file(file_name), positionn(positionn), rotts(rotts),colorr(color), is_fixed(is_fixed) {
             SetupRigidBody();
         }
     
@@ -187,6 +187,7 @@ class RigidBody {
         ChVector3d cog;
         ChVector3d positionn;
         ChQuaternion<> rotts;
+        ChColor colorr;
     
         void SetupRigidBody() {
             // Load mesh
@@ -219,6 +220,7 @@ class RigidBody {
             mesh = chrono_types::make_shared<ChVisualShapeTriangleMesh>();
             mesh->SetMesh(trimesh);
             // mesh->SetVisible(true);
+            mesh->SetColor(colorr);
             body->AddVisualShape(mesh, ChFrame<>(ChVector3d(0,0,0), ChMatrix33<>(1)));
     
             // Debug Output
@@ -278,7 +280,9 @@ int main(int argc, char* argv[]) {
 
     // Initialize RigidBody objects and store values (starting from index 1)
     for (size_t i = 1; i < file_names.size(); ++i) {
-        bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i]);
+        if(i==4)bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i], ChColor(0.6f,0.6f,0.6f));
+        else if(i==10)bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i], ChColor(1.0f,0.0f,0.0f));
+        else bodies[i] = std::make_unique<RigidBody>(sys, file_names[i], (positions[i] - positions[4]), rotss[i]);
     }
 
     // Extract body and COG values (starting from index 1)
@@ -295,9 +299,6 @@ int main(int argc, char* argv[]) {
         AddAxis(sys, ChVector3d(0,0,100), 2, 2, 100, ChColor(0,0,1));
     }
     
-    // frameGlobal.hideBody();
-    gearB.showCG();gearC.showCG();gearD.showCG();gearE.showCG();gearF.showCG();flywheel.showCG();
-
     // CreateJoint(Stator_body,    FrameGlobal_body,   sys, JointType::FIXED);
     // CreateJoint(Rotor_body, Stator_body, sys, JointType::REVOLUTE, true);
     // CreateJoint(Gear_body,      FrameGlobal_body,   sys, JointType::FIXED);
