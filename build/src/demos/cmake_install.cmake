@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/demos
+# Install script for directory: /home/saad/chronoDyno/src/demos
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,16 +44,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jamiul/chronoDyno/build/src/demos/mbs/cmake_install.cmake")
+  include("/home/saad/chronoDyno/build/src/demos/mbs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jamiul/chronoDyno/build/src/demos/irrlicht/cmake_install.cmake")
+  include("/home/saad/chronoDyno/build/src/demos/irrlicht/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jamiul/chronoDyno/build/src/demos/powerelectronics/cmake_install.cmake")
+  include("/home/saad/chronoDyno/build/src/demos/powerelectronics/cmake_install.cmake")
 endif()
 

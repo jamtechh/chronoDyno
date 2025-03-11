@@ -34,7 +34,7 @@ if(ENABLE_MODULE_IRRLICHT)
       # demo_MBS_crank
       # demo_MBS_forklift
       # demo_MBS_fourbar
-      # demo_MBS_gears
+      demo_MBS_gears
       # demo_MBS_mecanum
       # demo_MBS_pendulum
       # demo_MBS_suspension

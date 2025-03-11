@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jamiul/chronoDyno
+CMAKE_SOURCE_DIR = /home/saad/chronoDyno
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jamiul/chronoDyno/build
+CMAKE_BINARY_DIR = /home/saad/chronoDyno/build
 
 # Include any dependencies generated for this target.
 include src/demos/powerelectronics/CMakeFiles/my_demo.dir/depend.make
@@ -70,18 +70,18 @@ include src/demos/powerelectronics/CMakeFiles/my_demo.dir/progress.make
 include src/demos/powerelectronics/CMakeFiles/my_demo.dir/flags.make
 
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o: src/demos/powerelectronics/CMakeFiles/my_demo.dir/flags.make
-src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o: /home/jamiul/chronoDyno/src/demos/powerelectronics/test5.cpp
+src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o: /home/saad/chronoDyno/src/demos/powerelectronics/test5.cpp
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o: src/demos/powerelectronics/CMakeFiles/my_demo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jamiul/chronoDyno/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o"
-	cd /home/jamiul/chronoDyno/build/src/demos/powerelectronics && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o -MF CMakeFiles/my_demo.dir/test5.cpp.o.d -o CMakeFiles/my_demo.dir/test5.cpp.o -c /home/jamiul/chronoDyno/src/demos/powerelectronics/test5.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/saad/chronoDyno/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o"
+	cd /home/saad/chronoDyno/build/src/demos/powerelectronics && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o -MF CMakeFiles/my_demo.dir/test5.cpp.o.d -o CMakeFiles/my_demo.dir/test5.cpp.o -c /home/saad/chronoDyno/src/demos/powerelectronics/test5.cpp
 
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_demo.dir/test5.cpp.i"
-	cd /home/jamiul/chronoDyno/build/src/demos/powerelectronics && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jamiul/chronoDyno/src/demos/powerelectronics/test5.cpp > CMakeFiles/my_demo.dir/test5.cpp.i
+	cd /home/saad/chronoDyno/build/src/demos/powerelectronics && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/saad/chronoDyno/src/demos/powerelectronics/test5.cpp > CMakeFiles/my_demo.dir/test5.cpp.i
 
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_demo.dir/test5.cpp.s"
-	cd /home/jamiul/chronoDyno/build/src/demos/powerelectronics && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jamiul/chronoDyno/src/demos/powerelectronics/test5.cpp -o CMakeFiles/my_demo.dir/test5.cpp.s
+	cd /home/saad/chronoDyno/build/src/demos/powerelectronics && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/saad/chronoDyno/src/demos/powerelectronics/test5.cpp -o CMakeFiles/my_demo.dir/test5.cpp.s
 
 # Object files for target my_demo
 my_demo_OBJECTS = \
@@ -94,6 +94,7 @@ bin/my_demo: src/demos/powerelectronics/CMakeFiles/my_demo.dir/test5.cpp.o
 bin/my_demo: src/demos/powerelectronics/CMakeFiles/my_demo.dir/build.make
 bin/my_demo: /usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so
 bin/my_demo: /usr/lib/x86_64-linux-gnu/libpthread.a
+bin/my_demo: /usr/local/lib/libChronoEngine_powerelectronics.so
 bin/my_demo: /usr/local/lib/libChronoEngine_irrlicht.so
 bin/my_demo: /usr/local/lib/libChronoModels_robot.so
 bin/my_demo: /usr/local/lib/libChronoEngine.so
@@ -103,18 +104,18 @@ bin/my_demo: /usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so
 bin/my_demo: /usr/lib/x86_64-linux-gnu/libpthread.a
 bin/my_demo: /usr/local/lib/libngspice.so
 bin/my_demo: src/demos/powerelectronics/CMakeFiles/my_demo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jamiul/chronoDyno/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../../bin/my_demo"
-	cd /home/jamiul/chronoDyno/build/src/demos/powerelectronics && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/my_demo.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/saad/chronoDyno/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../../bin/my_demo"
+	cd /home/saad/chronoDyno/build/src/demos/powerelectronics && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/my_demo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/build: bin/my_demo
 .PHONY : src/demos/powerelectronics/CMakeFiles/my_demo.dir/build
 
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/clean:
-	cd /home/jamiul/chronoDyno/build/src/demos/powerelectronics && $(CMAKE_COMMAND) -P CMakeFiles/my_demo.dir/cmake_clean.cmake
+	cd /home/saad/chronoDyno/build/src/demos/powerelectronics && $(CMAKE_COMMAND) -P CMakeFiles/my_demo.dir/cmake_clean.cmake
 .PHONY : src/demos/powerelectronics/CMakeFiles/my_demo.dir/clean
 
 src/demos/powerelectronics/CMakeFiles/my_demo.dir/depend:
-	cd /home/jamiul/chronoDyno/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jamiul/chronoDyno /home/jamiul/chronoDyno/src/demos/powerelectronics /home/jamiul/chronoDyno/build /home/jamiul/chronoDyno/build/src/demos/powerelectronics /home/jamiul/chronoDyno/build/src/demos/powerelectronics/CMakeFiles/my_demo.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/saad/chronoDyno/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/saad/chronoDyno /home/saad/chronoDyno/src/demos/powerelectronics /home/saad/chronoDyno/build /home/saad/chronoDyno/build/src/demos/powerelectronics /home/saad/chronoDyno/build/src/demos/powerelectronics/CMakeFiles/my_demo.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : src/demos/powerelectronics/CMakeFiles/my_demo.dir/depend
 

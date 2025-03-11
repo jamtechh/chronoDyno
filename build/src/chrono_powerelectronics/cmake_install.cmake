@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/chrono_powerelectronics
+# Install script for directory: /home/saad/chronoDyno/src/chrono_powerelectronics
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,12 +49,12 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_powerelectronics.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/jamiul/chronoDyno/build/lib/libChronoEngine_powerelectronics.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/saad/chronoDyno/build/lib/libChronoEngine_powerelectronics.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_powerelectronics.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_powerelectronics.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_powerelectronics.so"
-         OLD_RPATH "/home/jamiul/chronoDyno/build/lib:/usr/local/lib:"
+         OLD_RPATH "/home/saad/chronoDyno/build/lib:/usr/local/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_powerelectronics.so")
@@ -66,6 +66,6 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/chrono_powerelectronics" TYPE DIRECTORY FILES "/home/jamiul/chronoDyno/src/chrono_powerelectronics/" FILES_MATCHING REGEX "/[^/]*\\.h$" REGEX "/fbs$" EXCLUDE)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/chrono_powerelectronics" TYPE DIRECTORY FILES "/home/saad/chronoDyno/src/chrono_powerelectronics/" FILES_MATCHING REGEX "/[^/]*\\.h$" REGEX "/fbs$" EXCLUDE)
 endif()
 

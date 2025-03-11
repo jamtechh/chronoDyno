@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/chrono_vehicle
+# Install script for directory: /home/saad/chronoDyno/src/chrono_vehicle
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

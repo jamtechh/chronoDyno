@@ -47,7 +47,7 @@
 #include "chrono_powerelectronics/ChElectronicsCosimulation.h"
 #include "chrono_powerelectronics/circuits/ChElectronicMotor.h"
 #include "chrono_powerelectronics/circuits/ChElectronicCircuit.h"
-// #include "chrono_powerelectronics/circuits/ChElectronicGeneric.h"
+#include "chrono_powerelectronics/circuits/ChElectronicGeneric.h"
 
 // ===============================================================================================================================================================================
 // ======== NAMESPACES ==============================================================================================================================================
@@ -714,7 +714,7 @@ int main(int argc, char* argv[]) {
         // ======== SAVE -> the needed variables ====================================================================================================================================================================
         OutputMap["alpha"].push_back(-Rotor_Euler_Ang[0]);
         OutputMap["t_mechanics"].push_back(t_sim_mechanics);
-        OutputMap["T_magnetic"].push_back(-1.0 * Torque_magnitude_Cam_Magnet);
+        OutputMap["T_magnetic"].push_back(-1.0 * 1);
         OutputMap["T_motor"].push_back(-1.0 * Torque_magnitude_RotorWinding_Stator);
 
         // ======== RUN -> the Mechanic solver ====================================================================================================================================

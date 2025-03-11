@@ -15,24 +15,24 @@
 
 set(HEAD_HASH)
 
-file(READ "/home/jamiul/chronoDyno/build/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
+file(READ "/home/saad/chronoDyno/build/CMakeFiles/git-data/HEAD" HEAD_CONTENTS LIMIT 1024)
 
 string(STRIP "${HEAD_CONTENTS}" HEAD_CONTENTS)
 if(HEAD_CONTENTS MATCHES "ref")
 	# named branch
 	string(REPLACE "ref: " "" HEAD_REF "${HEAD_CONTENTS}")
-	if(EXISTS "/home/jamiul/chronoDyno/.git/${HEAD_REF}")
-		configure_file("/home/jamiul/chronoDyno/.git/${HEAD_REF}" "/home/jamiul/chronoDyno/build/CMakeFiles/git-data/head-ref" COPYONLY)
-	elseif(EXISTS "/home/jamiul/chronoDyno/.git/logs/${HEAD_REF}")
-		configure_file("/home/jamiul/chronoDyno/.git/logs/${HEAD_REF}" "/home/jamiul/chronoDyno/build/CMakeFiles/git-data/head-ref" COPYONLY)
+	if(EXISTS "/home/saad/chronoDyno/.git/${HEAD_REF}")
+		configure_file("/home/saad/chronoDyno/.git/${HEAD_REF}" "/home/saad/chronoDyno/build/CMakeFiles/git-data/head-ref" COPYONLY)
+	elseif(EXISTS "/home/saad/chronoDyno/.git/logs/${HEAD_REF}")
+		configure_file("/home/saad/chronoDyno/.git/logs/${HEAD_REF}" "/home/saad/chronoDyno/build/CMakeFiles/git-data/head-ref" COPYONLY)
 		set(HEAD_HASH "${HEAD_REF}")
 	endif()
 else()
 	# detached HEAD
-	configure_file("/home/jamiul/chronoDyno/.git/HEAD" "/home/jamiul/chronoDyno/build/CMakeFiles/git-data/head-ref" COPYONLY)
+	configure_file("/home/saad/chronoDyno/.git/HEAD" "/home/saad/chronoDyno/build/CMakeFiles/git-data/head-ref" COPYONLY)
 endif()
 
 if(NOT HEAD_HASH)
-	file(READ "/home/jamiul/chronoDyno/build/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
+	file(READ "/home/saad/chronoDyno/build/CMakeFiles/git-data/head-ref" HEAD_HASH LIMIT 1024)
 	string(STRIP "${HEAD_HASH}" HEAD_HASH)
 endif()

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jamiul/chronoDyno
+CMAKE_SOURCE_DIR = /home/saad/chronoDyno
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jamiul/chronoDyno/build
+CMAKE_BINARY_DIR = /home/saad/chronoDyno/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/jamiul/chronoDyno/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/saad/chronoDyno/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -152,9 +152,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jamiul/chronoDyno/build/CMakeFiles /home/jamiul/chronoDyno/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/saad/chronoDyno/build/CMakeFiles /home/saad/chronoDyno/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jamiul/chronoDyno/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/saad/chronoDyno/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -260,6 +260,19 @@ dominos/fast:
 .PHONY : dominos/fast
 
 #=============================================================================
+# Target rules for targets named demo_MBS_gears
+
+# Build rule for target.
+demo_MBS_gears: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 demo_MBS_gears
+.PHONY : demo_MBS_gears
+
+# fast build rule for target.
+demo_MBS_gears/fast:
+	$(MAKE) $(MAKESILENT) -f src/demos/mbs/CMakeFiles/demo_MBS_gears.dir/build.make src/demos/mbs/CMakeFiles/demo_MBS_gears.dir/build
+.PHONY : demo_MBS_gears/fast
+
+#=============================================================================
 # Target rules for targets named my_demo
 
 # Build rule for target.
@@ -291,6 +304,7 @@ help:
 	@echo "... ChronoEngine_powerelectronics"
 	@echo "... ChronoModels_robot"
 	@echo "... demo_MBS_bricks"
+	@echo "... demo_MBS_gears"
 	@echo "... dominos"
 	@echo "... my_demo"
 .PHONY : help

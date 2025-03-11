@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = -DBP_USE_FIXEDPOINT_INT_32 -DBT_THREADSAFE -DBT_USE_OPENMP -DCH_API_COMPILE -DCH_IGNORE_DEPRECATED -DChronoEngine_EXPORTS
 
-C_INCLUDES = -I/home/jamiul/chronoDyno/src -I/home/jamiul/chronoDyno/build -I/usr/include/eigen3 -I/home/jamiul/chronoDyno/src/chrono -I/home/jamiul/chronoDyno/src/chrono/collision/bullet -I/home/jamiul/chronoDyno/src/chrono/collision/gimpact -I/home/jamiul/chronoDyno/src/chrono/../chrono_thirdparty/HACD -I/home/jamiul/chronoDyno/src/chrono/../chrono_thirdparty/HACDv2
+C_INCLUDES = -I/home/saad/chronoDyno/src -I/home/saad/chronoDyno/build -I/usr/include/eigen3 -I/home/saad/chronoDyno/src/chrono -I/home/saad/chronoDyno/src/chrono/collision/bullet -I/home/saad/chronoDyno/src/chrono/collision/gimpact -I/home/saad/chronoDyno/src/chrono/../chrono_thirdparty/HACD -I/home/saad/chronoDyno/src/chrono/../chrono_thirdparty/HACDv2
 
 C_FLAGS =   -fopenmp -O3 -DNDEBUG -fPIC -Wint-in-bool-context -Wno-sign-compare -Wno-reorder -Wno-unused-function -Wno-unused-parameter -Wno-unused-result
 
 CXX_DEFINES = -DBP_USE_FIXEDPOINT_INT_32 -DBT_THREADSAFE -DBT_USE_OPENMP -DCH_API_COMPILE -DCH_IGNORE_DEPRECATED -DChronoEngine_EXPORTS
 
-CXX_INCLUDES = -I/home/jamiul/chronoDyno/src -I/home/jamiul/chronoDyno/build -I/usr/include/eigen3 -I/home/jamiul/chronoDyno/src/chrono -I/home/jamiul/chronoDyno/src/chrono/collision/bullet -I/home/jamiul/chronoDyno/src/chrono/collision/gimpact -I/home/jamiul/chronoDyno/src/chrono/../chrono_thirdparty/HACD -I/home/jamiul/chronoDyno/src/chrono/../chrono_thirdparty/HACDv2
+CXX_INCLUDES = -I/home/saad/chronoDyno/src -I/home/saad/chronoDyno/build -I/usr/include/eigen3 -I/home/saad/chronoDyno/src/chrono -I/home/saad/chronoDyno/src/chrono/collision/bullet -I/home/saad/chronoDyno/src/chrono/collision/gimpact -I/home/saad/chronoDyno/src/chrono/../chrono_thirdparty/HACD -I/home/saad/chronoDyno/src/chrono/../chrono_thirdparty/HACDv2
 
 CXX_FLAGS =   -fopenmp   -fopenmp -march=native -O3 -DNDEBUG   -fopenmp -march=native -DNDEBUG -std=gnu++17 -fPIC -Wint-in-bool-context -Wno-sign-compare -Wno-reorder -Wno-unused-function -Wno-unused-parameter -Wno-unused-result
 

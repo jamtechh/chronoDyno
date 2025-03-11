@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/chrono_irrlicht
+# Install script for directory: /home/saad/chronoDyno/src/chrono_irrlicht
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,12 +49,12 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_irrlicht.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/jamiul/chronoDyno/build/lib/libChronoEngine_irrlicht.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/saad/chronoDyno/build/lib/libChronoEngine_irrlicht.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_irrlicht.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_irrlicht.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_irrlicht.so"
-         OLD_RPATH "/home/jamiul/chronoDyno/build/lib:"
+         OLD_RPATH "/home/saad/chronoDyno/build/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libChronoEngine_irrlicht.so")
@@ -67,16 +67,16 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/chrono_irrlicht" TYPE FILE FILES
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChApiIrr.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrTools.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrCamera.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrMeshTools.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrEffects.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrSkyBoxSceneNode.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrGUI.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChVisualSystemIrrlicht.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrNodeModel.h"
-    "/home/jamiul/chronoDyno/src/chrono_irrlicht/ChIrrNodeShape.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChApiIrr.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrTools.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrCamera.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrMeshTools.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrEffects.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrSkyBoxSceneNode.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrGUI.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChVisualSystemIrrlicht.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrNodeModel.h"
+    "/home/saad/chronoDyno/src/chrono_irrlicht/ChIrrNodeShape.h"
     )
 endif()
 

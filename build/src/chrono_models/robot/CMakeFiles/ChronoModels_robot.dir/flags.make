@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DBP_USE_FIXEDPOINT_INT_32 -DCH_API_COMPILE_MODELS -DCH_IGNORE_DEPRECATED -DChronoModels_robot_EXPORTS
 
-CXX_INCLUDES = -I/home/jamiul/chronoDyno/src -I/home/jamiul/chronoDyno/build -I/usr/include/eigen3 -I/home/jamiul/chronoDyno/src/chrono -I/home/jamiul/chronoDyno/src/chrono/collision/bullet -I/home/jamiul/chronoDyno/src/chrono/collision/gimpact -I/home/jamiul/chronoDyno/src/chrono/../chrono_thirdparty/HACD -I/home/jamiul/chronoDyno/src/chrono/../chrono_thirdparty/HACDv2 -I/usr/include/irrlicht
+CXX_INCLUDES = -I/home/saad/chronoDyno/src -I/home/saad/chronoDyno/build -I/usr/include/eigen3 -I/home/saad/chronoDyno/src/chrono -I/home/saad/chronoDyno/src/chrono/collision/bullet -I/home/saad/chronoDyno/src/chrono/collision/gimpact -I/home/saad/chronoDyno/src/chrono/../chrono_thirdparty/HACD -I/home/saad/chronoDyno/src/chrono/../chrono_thirdparty/HACDv2 -I/usr/include/irrlicht
 
 CXX_FLAGS =   -fopenmp   -fopenmp -march=native -O3 -DNDEBUG   -fopenmp -march=native -DNDEBUG -std=gnu++17 -fPIC   -fopenmp -march=native  -Wint-in-bool-context -Wno-sign-compare -Wno-reorder -Wno-unused-function -Wno-unused-parameter -Wno-unused-result
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno
+# Install script for directory: /home/saad/chronoDyno
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,20 +43,20 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/chrono/data" TYPE DIRECTORY FILES "/home/jamiul/chronoDyno/data/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/chrono/data" TYPE DIRECTORY FILES "/home/saad/chronoDyno/data/")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/chrono/template_project" TYPE DIRECTORY FILES "/home/jamiul/chronoDyno/template_project/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/chrono/template_project" TYPE DIRECTORY FILES "/home/saad/chronoDyno/template_project/")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/chrono/template_project_vehicle_cosim" TYPE DIRECTORY FILES "/home/jamiul/chronoDyno/template_project_vehicle_cosim/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/chrono/template_project_vehicle_cosim" TYPE DIRECTORY FILES "/home/saad/chronoDyno/template_project_vehicle_cosim/")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jamiul/chronoDyno/build/src/cmake_install.cmake")
+  include("/home/saad/chronoDyno/build/src/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -74,6 +74,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/home/jamiul/chronoDyno/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/saad/chronoDyno/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

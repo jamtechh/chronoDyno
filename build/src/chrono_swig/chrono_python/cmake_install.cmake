@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/chrono_swig/chrono_python
+# Install script for directory: /home/saad/chronoDyno/src/chrono_swig/chrono_python
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -105,7 +105,7 @@ if (MSVC)
 endif()
 
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  list(APPEND CHRONO_LINKER_FLAGS "-L/home/jamiul/chronoDyno/build/lib")
+  list(APPEND CHRONO_LINKER_FLAGS "-L/home/saad/chronoDyno/build/lib")
 endif()
 
 set(CHRONO_STATIC OFF)
@@ -129,7 +129,7 @@ set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -DNDEBUG")
 
 
-list(APPEND CHRONO_INCLUDE_DIRS "/home/jamiul/chronoDyno/src;/home/jamiul/chronoDyno/src/chrono;/home/jamiul/chronoDyno/src/chrono/collision/bullet;/home/jamiul/chronoDyno/src/chrono/collision/gimpact;/home/jamiul/chronoDyno/src/chrono_thirdparty/HACD;/home/jamiul/chronoDyno/src/chrono_thirdparty/HACDv2;/home/jamiul/chronoDyno/build;/usr/include/eigen3;")
+list(APPEND CHRONO_INCLUDE_DIRS "/home/saad/chronoDyno/src;/home/saad/chronoDyno/src/chrono;/home/saad/chronoDyno/src/chrono/collision/bullet;/home/saad/chronoDyno/src/chrono/collision/gimpact;/home/saad/chronoDyno/src/chrono_thirdparty/HACD;/home/saad/chronoDyno/src/chrono_thirdparty/HACDv2;/home/saad/chronoDyno/build;/usr/include/eigen3;")
 list(APPEND CHRONO_LIBRARIES "/usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so;/usr/lib/x86_64-linux-gnu/libpthread.a")
 list(APPEND CHRONO_LIBRARIES "")
 list(PREPEND CHRONO_LIB_NAMES "ChronoEngine")
@@ -142,10 +142,10 @@ list(APPEND CHRONO_DEPENDENCY_DLLS "")
 
 set(CHRONO_CXX_STANDARD "17")
 
-set(CHRONO_DATA_DIR "/home/jamiul/chronoDyno/data/")
-set(CHRONO_VEHICLE_DATA_DIR "/home/jamiul/chronoDyno/data/vehicle/")
-set(CHRONO_FSI_DATA_DIR "/home/jamiul/chronoDyno/data/fsi/")
-set(SYNCHRONO_DATA_DIR "/home/jamiul/chronoDyno/data/synchrono/")
+set(CHRONO_DATA_DIR "/home/saad/chronoDyno/data/")
+set(CHRONO_VEHICLE_DATA_DIR "/home/saad/chronoDyno/data/vehicle/")
+set(CHRONO_FSI_DATA_DIR "/home/saad/chronoDyno/data/fsi/")
+set(SYNCHRONO_DATA_DIR "/home/saad/chronoDyno/data/synchrono/")
 
 set(CHRONO_SSE_FOUND "TRUE")
 set(CHRONO_AVX_FOUND "TRUE")
@@ -458,7 +458,7 @@ foreach(COMPONENT ${Chrono_FIND_COMPONENTS})
 
       list(APPEND CHRONO_INCLUDE_DIRS "")
       list(APPEND CHRONO_INCLUDE_DIRS "")
-      list(APPEND CHRONO_INCLUDE_DIRS "/home/jamiul/chronoDyno/src/chrono_thirdparty/flatbuffers/include")
+      list(APPEND CHRONO_INCLUDE_DIRS "/home/saad/chronoDyno/src/chrono_thirdparty/flatbuffers/include")
       list(APPEND CHRONO_LIBRARIES "")
       list(APPEND CHRONO_LIBRARIES "")
 
@@ -593,7 +593,7 @@ foreach(COMPONENT ${Chrono_FIND_COMPONENTS})
       list(PREPEND CHRONO_LIB_NAMES "ChronoEngine_csharp_core")
       list(APPEND CHRONO_DLL_NAMES "ChronoEngine_csharp_core.dll") # valid also in case of static
 
-      set(CHRONO_CSHARP_SOURCE_DIR "/home/jamiul/chronoDyno/build/chrono_csharp")
+      set(CHRONO_CSHARP_SOURCE_DIR "/home/saad/chronoDyno/build/chrono_csharp")
       set(CHRONO_CSHARP_SOURCES "")
 
       set(Chrono_CSHARP_CORE_DIR "${CHRONO_CSHARP_SOURCE_DIR}/core")
@@ -698,7 +698,7 @@ foreach(config ${CHRONO_CONFIGURATION_TYPES})
   foreach(lib ${CHRONO_LIB_NAMES})
     set(onelib "${lib}-NOTFOUND")
     find_library(onelib ${lib}
-      PATHS "/home/jamiul/chronoDyno/build/lib"
+      PATHS "/home/saad/chronoDyno/build/lib"
       PATH_SUFFIXES ${config}
       NO_DEFAULT_PATH
     )
@@ -828,7 +828,7 @@ function(add_DLL_copy_command)
       foreach(dll ${DLL_NAMES})
         set(onedll "${dll}-NOTFOUND")
         find_file(onedll ${dll}
-          PATHS "/home/jamiul/chronoDyno/build/bin"
+          PATHS "/home/saad/chronoDyno/build/bin"
           PATH_SUFFIXES "${config}"
           NO_DEFAULT_PATH
         )

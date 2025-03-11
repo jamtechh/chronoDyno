@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/demos/powerelectronics
+# Install script for directory: /home/saad/chronoDyno/src/demos/powerelectronics
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

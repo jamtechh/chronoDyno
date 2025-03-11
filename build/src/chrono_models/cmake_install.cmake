@@ -1,4 +1,4 @@
-# Install script for directory: /home/jamiul/chronoDyno/src/chrono_models
+# Install script for directory: /home/saad/chronoDyno/src/chrono_models
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,10 +44,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/jamiul/chronoDyno/build/src/chrono_models/robot/cmake_install.cmake")
+  include("/home/saad/chronoDyno/build/src/chrono_models/robot/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/chrono_models" TYPE FILE FILES "/home/jamiul/chronoDyno/src/chrono_models/ChApiModels.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/chrono_models" TYPE FILE FILES "/home/saad/chronoDyno/src/chrono_models/ChApiModels.h")
 endif()
 

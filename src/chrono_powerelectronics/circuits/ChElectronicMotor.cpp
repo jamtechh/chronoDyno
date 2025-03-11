@@ -42,9 +42,9 @@ void ChElectronicMotor::PreInitialize() {
         {"RaC", R_coil},
     });
 
-    this->SetBranchTracking({
+    /*this->SetBranchTracking({
         "LaC"
-    });
+    });*/
 }
 
 void ChElectronicMotor::SetShaftAngVel(double angvel) {
@@ -57,7 +57,6 @@ ChVector3d ChElectronicMotor::GetOutputTorque() {
 
 void ChElectronicMotor::SetPWM(double PWM) {
     this->VgenPWMVAR = PWM;
-    // printf("%lf\n", PWM);
 }
 
 void ChElectronicMotor::PostInitialize() {
@@ -81,6 +80,15 @@ void ChElectronicMotor::PostAdvance(double dt_mbs) {
 
 
     auto res = this->GetResult();
+    
+    /*// Plot the results
+    std::cout << "Results:\n" << std::endl;
+    for (const auto& [key, values] : res) { 
+        std::cout << key << ": ";
+        for (double value : values) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;}*/
     double IVprobe1 = res["vprobe1"].back();
 
     // std::cout << "###########################" << std::endl;
@@ -90,7 +98,7 @@ void ChElectronicMotor::PostAdvance(double dt_mbs) {
     // if(IVprobe1 < 0) {
     //     spindle_torque_mag = 0.0;
     // }
-    std::cout << this->kt_motor << " " << IVprobe1 << " " << spindle_torque_mag << "\t\t";
+    // std::cout << this->kt_motor << " " << IVprobe1 << " " << spindle_torque_mag << std::endl;
 
     ChVector3d spindle_torque = spindle_torque_mag * torque_vec_norm;
     this->spindle_torque = spindle_torque;
@@ -101,7 +109,7 @@ void ChElectronicMotor::PostAdvance(double dt_mbs) {
     if (this->spindle != nullptr) {
         ang_vel = spindle->GetAngVelLocal()[2];
     }
-    std::cout << "Current " << IVprobe1 << "\t Ang Vel " << ang_vel << "\t\t";
+    std::cout << "Current " << IVprobe1 << " Ang Vel " << ang_vel << std::endl;
 
 
     this->VbackemfCVAR = ke_motor * ang_vel ;
